@@ -12,46 +12,24 @@
   $bg-dark-blue: rgba(18,29,46,.3);
   $bg-medium-blue: rgba(33,43,57,.3);
 
+  // Landscpae width scale factor
+  $lw: 0.053vw;
+
+  // Landscpae height scale factor
+  $lh: 0.092vh;
+
+  // Portrait width scale factor
+  $pw: 0.092vw;
+
+  // Portrait height scale factor
+  $ph: 0.053vh;
+
   // ==========
   // CSS LAYOUT
   // ==========
 
-  * { box-sizing: border-box; }
-
-  // ==========
-  // MIXIN FOR MAKING FONTS LIQUID
-  //libsass (v3.3.6)
-  //PRECISE CONTROL OVER RESPONSIVE TYPOGRAPHY FOR SASS
-  // Indrek Paas @indrekpaas
-  // Inspired by Mike Riethmuller's Precise control over responsive typography
-  // http://madebymike.com.au/writing/precise-control-responsive-typography/
-  // `strip-unit()` function by Hugo Giraudel
-  // ==========
-
-  @mixin fluid-type($properties, $min-vw, $max-vw, $min-value, $max-value) {
-
-    @each $property in $properties {
-      #{$property}: $min-value;
-    }
-
-    @media screen and (min-width: $min-vw) {
-      @each $property in $properties {
-        #{$property}: calc(#{$min-value} + #{strip-unit($max-value - $min-value)} * (100vw - #{$min-vw}) / #{strip-unit($max-vw - $min-vw)});
-      }
-    }
-
-    @media screen and (min-width: $max-vw) {
-      @each $property in $properties {
-        #{$property}: $max-value;
-      }
-    }
-  }
-
-  @function strip-unit($value) {
-    @return $value / ($value * 0 + 1);
-  }
-
   * {
+    box-sizing: border-box;
     -webkit-font-smoothing: antialiased;
   }
 
@@ -79,13 +57,13 @@
   // Current date/time
   time {
     position: absolute;
-    left: 55%;
-    top: 30px;
+    width: 64%;
+    top: 30 * $lh;
     color: #fff;
-    padding-right: 20px;
+    padding-right: 20 * $lw;
     text-align: right;
     z-index: 9999;
-    @include fluid-type(font-size, 1440px, 1920px, 14px, 20px);
+    font-size: 30 * $lw;
   }
 
   .oku-circ {
@@ -103,12 +81,12 @@
       width: 65vw;
       height: 100vh;
       float: left;
-      padding: 20px;
-      padding-left: 30px;
       background-color: $bg-dark-blue;
       margin: 0;
       padding: 0;
-      padding-left: 50px;
+      //padding-left: 50px;
+      padding-left: 70 * $lw;
+
     }
 
     .oku-circ__uris {
@@ -119,7 +97,9 @@
       border-left: 1px solid rgba(255,255,255,.2);
       margin: 0;
       padding: 0;
-      padding-left: 50px;
+      //padding-left: 50px;
+      padding-left: 50 * $lw;
+
     }
   }
 
@@ -133,15 +113,19 @@
     flex-flow: column;
 
     time {
-      @include fluid-type(font-size, 810px, 1080px, 14px, 30px);
-      right: 20px;
+      width: 100%;
+      font-size: 30 * $lw;
+      right: 20 * $lw;
     }
 
     .oku-circ__olin {
-      padding: 20px;
-      padding-left: 30px;
+      //padding: 20px;
+      padding: 20 * $ph;
+      padding-left: 30 * $ph;
+      //padding-left: 30px;
       background-color: $bg-medium-blue;
-      padding-top: 40px;
+      //padding-top: 40px;
+      padding-top: 30 * $lh;
       order: 2;
     }
 
@@ -149,9 +133,13 @@
       background-color: $bg-dark-blue;
       border-bottom: 1px solid rgba(255,255,255,.2);
       border-left: none;
-      padding-left: 30px;
-      padding-top: 20px;
-      padding-bottom: 40px;
+      //padding-left: 30px;
+      padding-left: 30 * $lw;
+      //padding-top: 20px;
+      padding-top: 20 * $lh;
+      //padding-bottom: 40px;
+      padding-bottom: 40 * $lh;
+
       order: 1;
     }
   }

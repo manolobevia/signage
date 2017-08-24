@@ -78,38 +78,17 @@ export default {
 $light-blue: #3C96D2;
 $red: #D0011B;
 
-// ==========
-// MIXIN FOR MAKING FONTS LIQUID
-// libsass (v3.3.6)
-// PRECISE CONTROL OVER RESPONSIVE TYPOGRAPHY FOR SASS
-// Indrek Paas @indrekpaas
-// Inspired by Mike Riethmuller's Precise control over responsive typography
-// http://madebymike.com.au/writing/precise-control-responsive-typography/
-// `strip-unit()` function by Hugo Giraudel
-// ==========
+// Landscpae width scale factor
+$lw: 0.053vw;
 
-@mixin fluid-type($properties, $min-vw, $max-vw, $min-value, $max-value) {
+// Landscpae height scale factor
+$lh: 0.092vh;
 
-  @each $property in $properties {
-    #{$property}: $min-value;
-  }
+// Portrait width scale factor
+$pw: 0.092vw;
 
-  @media screen and (min-width: $min-vw) {
-    @each $property in $properties {
-      #{$property}: calc(#{$min-value} + #{strip-unit($max-value - $min-value)} * (100vw - #{$min-vw}) / #{strip-unit($max-vw - $min-vw)});
-    }
-  }
-
-  @media screen and (min-width: $max-vw) {
-    @each $property in $properties {
-      #{$property}: $max-value;
-    }
-  }
-}
-
-@function strip-unit($value) {
-  @return $value / ($value * 0 + 1);
-}
+// Portrait height scale factor
+$ph: 0.053vh;
 
 * {
   -webkit-font-smoothing: antialiased;
@@ -133,23 +112,23 @@ $red: #D0011B;
     h1 {
         text-transform: capitalize;
         font-weight: normal;
-        @include fluid-type(font-size, 1440px, 1920px, 38px, 50px);
-        @include fluid-type(padding-top, 1440px, 1920px, 20px, 50px);
+        font-size: 50 * $lw;
+        padding-top: 50 * $lh;
         margin: 0;
     }
 
     // Device container
     .device-type {
-      @include fluid-type(padding-top, 1440px, 1920px, 10px, 20px);
-      @include fluid-type(margin-top, 1440px, 1920px, 20px, 30px);
-      @include fluid-type(margin-bottom, 1440px, 1920px, 120px, 180px);
+      padding-top: 20 * $lh;
+      margin-top: 30 * $lh;
+      margin-bottom: 180 * $lh;
 
 
       ul {
-        padding-left: 20px;
+        padding-left: 20 * $lw;
 
         li {
-          @include fluid-type(padding-bottom, 1440px, 1920px, 30px, 40px);
+          padding-top: 20 * $lh;
 
           p {
             margin: 0;
@@ -160,54 +139,52 @@ $red: #D0011B;
 
     // Device type (laptops, chargers, ...)
     .device-type__header {
-      @include fluid-type(font-size, 1440px, 1920px, 40px, 67px);
+      font-size: 67 * $lw;
       margin: 0;
-      @include fluid-type(padding-bottom, 1440px, 1920px, 27px, 30px);
-
+      padding-bottom: 30 * $lh;
     }
 
     // Device info: count, availavility, ..
     .device-type__info {
       width: 50%;
       float: left;
-      @include fluid-type(font-size, 1440px, 1920px, 26px, 44px);
+      font-size: 44 * $lw;
       color: #fff;
     }
 
     .device-type__info--icon {
       color: #fff;
-      padding-right: 8px;
+      padding-right: 8 * $lw;
     }
 
     // Device count
     .device-type__info--count {
       color: $light-blue;
       border-radius: 50%;
-      @include fluid-type(width, 1440px, 1920px, 60px, 80px);
-      @include fluid-type(height, 1440px, 1920px, 60px, 80px);
-      @include fluid-type(line-height, 1440px, 1920px, 60px, 80px);
+      width: 80 * $lw;
+      height: 80 * $lw;
+      line-height: 80 * $lw;
       background-color: #fff;
       text-align: center;
       display: inline-block;
       float: left;
-      margin-right: 10px;
+      margin-right: 10 * $lw;
     }
 
     // Device type availability
     .device-type__info--availability {
       vertical-align: middle;
       display: inline-block;
-      @include fluid-type(padding-top, 1440px, 1920px, 12px, 14px);
-      padding-right: 10px;
       width: 80%;
+      padding-top: 14 * $lh;
+      padding-right: 10 * $lw;
     }
 
     .available {
       vertical-align: middle;
       color: $light-blue;
       display: inline-block;
-      @include fluid-type(margin-top, 1440px, 1920px, -5px, -10px);
-
+      margin-top: -10 * $lh;
     }
 
     .unavailable {
@@ -218,14 +195,14 @@ $red: #D0011B;
 
     // Laptop icon
     .device-type__header--icon-laptop {
-      @include fluid-type(font-size, 1440px, 1920px, 70px, 90px);
+      font-size: 90 * $lw;
       vertical-align: middle;
       display: inline-block;
     }
 
     // Charger icon
     .device-type__header--icon-charger {
-      @include fluid-type(font-size, 1440px, 1920px, 50px, 70px);
+      font-size: 70 * $lw;
       vertical-align: middle;
     }
   }
@@ -242,22 +219,22 @@ $red: #D0011B;
     h1 {
         text-transform: capitalize;
         font-weight: normal;
-        @include fluid-type(font-size, 1440px, 1920px, 24px, 32px);
-        @include fluid-type(padding-top, 1440px, 1920px, 20px, 40px);
+        font-size: 32 * $lw;
+        padding-top: 40 * $lh;
         margin: 0;
     }
 
     // Device container
     .device-type {
-      @include fluid-type(padding-top, 1440px, 1920px, 10px, 20px);
-      @include fluid-type(margin-top, 1440px, 1920px, 20px, 30px);
-      @include fluid-type(margin-bottom, 1440px, 1920px, 120px, 200px);
+      padding-top: 20 * $lh;
+      margin-top: 30 * $lh;
+      margin-bottom: 200 * $lh;
 
       ul {
-        padding-left: 20px;
+        padding-left: 20 * $lw;
 
         li {
-          @include fluid-type(padding-bottom, 1440px, 1920px, 7px, 10px);
+          padding-bottom: 10 * $lh;
 
           p {
             margin: 0;
@@ -268,15 +245,15 @@ $red: #D0011B;
 
     // Device type (laptops, chargers, ...)
     .device-type__header {
-      @include fluid-type(font-size, 1440px, 1920px, 38px, 52px);
+      font-size: 52 * $lw;
       margin: 0;
-      @include fluid-type(padding-bottom, 1440px, 1920px, 15px, 20px);
+      padding-bottom: 20 * $lh;
     }
 
     // Device info: count, availavility, ...
     .device-type__info {
-      @include fluid-type(font-size, 1440px, 1920px, 22px, 34px);
-      margin-bottom: 30px;
+      font-size: 34 * $lw;
+      margin-bottom: 30 * $lh;
       color: #fff;
       width: 100%;
       float: left;
@@ -284,7 +261,7 @@ $red: #D0011B;
 
     .device-type__info--icon {
       color: #fff;
-      padding-right: 12px;
+      padding-right: 12 * $lw;
     }
 
     // Device count
@@ -295,45 +272,46 @@ $red: #D0011B;
       text-align: center;
       display: inline-block;
       float: left;
-      @include fluid-type(font-size, 1440px, 1920px, 22px, 30px);
-      @include fluid-type(width, 1440px, 1920px, 40px, 60px);
-      @include fluid-type(height, 1440px, 1920px, 40px, 60px);
-      @include fluid-type(line-height, 1440px, 1920px, 40px, 60px);
+      font-size: 30 * $lw;
+      width: 60 * $lw;
+      height: 60 * $lw;
+      line-height: 60 * $lw;
     }
 
     // Device type availability
     .device-type__info--availability {
       vertical-align: middle;
       display: inline-block;
-      padding-left: 10px;
+      padding-left: 10 * $lw;
       width: 80%;
-      @include fluid-type(padding-top, 1440px, 1920px, 7px, 12px);
+      padding-top: 12 * $lh;
     }
 
     .available {
       vertical-align: middle;
       color: $light-blue;
       display: inline-block;
-      @include fluid-type(margin-top, 1440px, 1920px, -5px, -7px);
+      margin-top: -7 * $lh;
     }
 
     .unavailable {
       vertical-align: middle;
       color: $red;
       display: inline-block;
-      @include fluid-type(margin-top, 1440px, 1920px, -5px, -7px);
+      //@include fluid-type(margin-top, 1440px, 1920px, -5px, -7px);
+      margin-top: -7 * $lh;
     }
 
     // Laptop icon
     .device-type__header--icon-laptop {
-      @include fluid-type(font-size, 1440px, 1920px, 50px, 80px);
+      font-size: 80 * $lw;
       vertical-align: middle;
       display: inline-block;
     }
 
     // Charger icon
     .device-type__header--icon-charger {
-      @include fluid-type(font-size, 1440px, 1920px, 40px, 70px);
+      font-size: 70 * $lw;
       vertical-align: middle;
     }
   }
@@ -344,7 +322,7 @@ $red: #D0011B;
 // ====================
 
 .uris {
-  @include fluid-type(padding-left, 810px, 1080px, 10px, 15px);
+  padding-left: 15 * $pw;
 
 
   // ===============
@@ -359,23 +337,24 @@ $red: #D0011B;
     h1 {
         text-transform: capitalize;
         font-weight: normal;
-        @include fluid-type(font-size, 810px, 1080px, 45px, 65px);
-        @include fluid-type(padding-top, 810px, 1080px, 50px, 70px);
+        font-size: 65 * $ph;
+        padding-top: 70 * $pw;
         margin: 0;
     }
 
     // Device container
     .device-type {
-      @include fluid-type(padding-bottom, 810px, 1080px, 15px, 30px);
-      @include fluid-type(margin-top, 810px, 1080px, 35px, 50px);
-      @include fluid-type(margin-bottom, 810px, 1080px, 160px, 200px);
+      padding-bottom: 30 * $pw;
+      margin-top: 50 * $pw;
+      margin-bottom: 200 * $pw;
+
 
       ul {
-        padding-left: 20px;
+        padding-left: 20 * $ph;
 
         li {
-          @include fluid-type(padding-bottom, 810px, 1080px, 20px, 30px);
-          @include fluid-type(padding-top, 810px, 1080px, 20px, 30px);
+          padding-bottom: 30 * $pw;
+          padding-top: 30 * $pw;
 
           p {
             margin: 0;
@@ -386,36 +365,37 @@ $red: #D0011B;
 
     // Device type (laptops, chargers, ...)
     .device-type__header {
-      @include fluid-type(font-size, 810px, 1080px, 60px, 75px);
+      font-size: 75 * $ph;
+
       margin: 0;
-      @include fluid-type(padding-bottom, 810px, 1080px, 10px, 10px);
+      padding-bottom: 10 * $pw;
+
     }
 
     // Device info: count, availavility, ..
     .device-type__info {
       width: 50%;
       float: left;
-      @include fluid-type(font-size, 810px, 1080px, 35px, 45px);
+      font-size: 45 * $ph;
       color: #fff;
 
       i {
-        padding-right: 10px;
-        @include fluid-type(font-size, 810px, 1080px, 40px, 55px);
+        font-size: 55 * $ph;
+        padding-right: 10 * $pw;
       }
     }
 
     .device-type__info--icon {
-      @include fluid-type(padding-right, 810px, 1080px, 2px, 8px);
-      @include fluid-type(padding-left, 810px, 1080px, 4px, 8px);
+      padding-right: 12 * $ph;
     }
 
     // Device count
     .device-type__info--count {
       color: $light-blue;
       border-radius: 50%;
-      @include fluid-type(width, 810px, 1080px, 65px, 90px);
-      @include fluid-type(height, 810px, 1080px, 65px, 90px);
-      @include fluid-type(line-height, 810px, 1080px, 65px, 90px);
+      width: 90 * $ph;
+      height: 90 * $ph;
+      line-height: 90 * $ph;
       background-color: #fff;
       text-align: center;
       display: inline-block;
@@ -426,16 +406,16 @@ $red: #D0011B;
     .device-type__info--availability {
       vertical-align: middle;
       display: inline-block;
-      @include fluid-type(padding-top, 810px, 1080px, 12px, 20px);
       width: 80%;
-      @include fluid-type(padding-left, 810px, 1080px, 8px, 20px);
+      padding-top: 10 * $lh;
+      padding-left: 20 * $lw;
     }
 
     .available {
       vertical-align: middle;
       color: $light-blue;
       display: inline-block;
-      @include fluid-type(margin-top, 810px, 1080px, -5px, -10px);
+      margin-top: -10 * $lh;
     }
 
     .unavailable {
@@ -446,14 +426,12 @@ $red: #D0011B;
 
     // Laptop icon
     .device-type__header--icon-laptop {
-      @include fluid-type(font-size, 810px, 1080px, 80px, 110px);
       vertical-align: middle;
       display: inline-block;
     }
 
     // Charger icon
     .device-type__header--icon-charger {
-      @include fluid-type(font-size, 810px, 1080px, 60px, 80px);
       vertical-align: middle;
     }
   }
@@ -470,24 +448,25 @@ $red: #D0011B;
     h1 {
         text-transform: capitalize;
         font-weight: normal;
-        @include fluid-type(font-size, 810px, 1080px, 30px, 40px);
-        @include fluid-type(padding-top, 810px, 1080px, 0, 10px);
+        font-size: 40 * $ph;
+        padding-top: 10 * $pw;
+
         margin: 0;
     }
 
     // Device container
     .device-type {
-      @include fluid-type(padding-top, 810px, 1080px, 10px, 10px);
-      @include fluid-type(margin-top, 810px, 1080px, 10px, 15px);
+      padding-top: 10 * $pw;
+      margin-top: 15 * $pw;
       margin-bottom: 0;
       width: 50%;
       float: left;
 
       ul {
-        padding-left: 20px;
+        padding-left: 20 * $ph;
 
         li {
-          @include fluid-type(padding-bottom, 810px, 1080px, 7px, 20px);
+          padding-bottom: 20 * $pw;
 
           p {
             margin: 0;
@@ -498,28 +477,28 @@ $red: #D0011B;
 
     // Device type (laptops, chargers, ...)
     .device-type__header {
-      @include fluid-type(font-size, 810px, 1080px, 34px, 48px);
+      font-size: 48 * $ph;
       margin: 0;
-      @include fluid-type(padding-bottom, 810px, 1080px, 20px, 30px);
+      padding-bottom: 30 * $pw;
     }
 
     // Device info: count, availavility, ...
     .device-type__info {
-      @include fluid-type(font-size, 810px, 1080px, 24px, 32px);
-      @include fluid-type(margin-bottom, 810px, 1080px, 10px, 20px);
+      font-size: 32 * $ph;
+      margin-bottom: 20 * $pw;
       color: #fff;
       width: 100%;
       float: left;
 
       i {
-        padding-right: 10px;
-        @include fluid-type(font-size, 810px, 1080px, 26px, 45px);
+        padding-right: 10 * $ph;
+        font-size: 45 * $ph;
       }
     }
 
     .device-type__info--icon {
       color: #fff;
-      @include fluid-type(padding-right, 810px, 1080px, 6px, 12px);
+      padding-right: 12 * $ph;
     }
 
     // Device count
@@ -530,46 +509,46 @@ $red: #D0011B;
       text-align: center;
       display: inline-block;
       float: left;
-      @include fluid-type(font-size, 810px, 1080px, 28px, 40px);
-      @include fluid-type(width, 810px, 1080px, 55px, 80px);
-      @include fluid-type(height, 810px, 1080px, 55px, 80px);
-      @include fluid-type(line-height, 810px, 1080px, 55px, 80px);
+      font-size: 40 * $ph;
+      width: 80 * $ph;
+      height: 80 * $ph;
+      line-height: 80 * $ph;
     }
 
     // Device type availability
     .device-type__info--availability {
       vertical-align: middle;
       display: inline-block;
-      @include fluid-type(padding-left, 810px, 1080px, 9px, 10px);
+      padding-left: 10 * $ph;
       width: 80%;
-      @include fluid-type(padding-top, 810px, 1080px, 10px, 12px);
-      @include fluid-type(line-height, 810px, 1080px, 40px, 50px);
+      padding-top: 15 * $pw;
+      line-height: 50 * $pw;
     }
 
     .available {
       vertical-align: middle;
       color: $light-blue;
       display: inline-block;
-      @include fluid-type(margin-top, 810px, 1080px, -5px, -7px);
+      margin-top: -7 * $pw;
+
     }
 
     .unavailable {
       vertical-align: middle;
       color: $red;
       display: inline-block;
-      @include fluid-type(margin-top, 810px, 1080px, -5px, -7px);
     }
 
     // Laptop icon
     .device-type__header--icon-laptop {
-      @include fluid-type(font-size, 810px, 1080px, 50px, 80px);
+      font-size: 80 * $ph;
       vertical-align: middle;
       display: inline-block;
     }
 
     // Charger icon
     .device-type__header--icon-charger {
-      @include fluid-type(font-size, 810px, 1080px, 40px, 60px);
+      font-size: 60 * $ph;
       vertical-align: middle;
     }
   }
