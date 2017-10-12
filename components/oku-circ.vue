@@ -9,13 +9,13 @@
     <ul>
       <li class="device-type__info">
         <p><span class="device-type__info--count">{{ laptops[location].macAvailable }}</span></p>
-        <p class="device-type__info--availability"><i class="fa fa-apple device-type__info--icon" aria-hidden="true"></i> <span class="available">available</span></p>
+        <p class="device-type__info--availability"><i class="fa fa-apple device-type__info--icon" aria-hidden="true"></i> <is-available device="macAvailable"/></p>
         <!--{{ laptops[location].macNextDue }}-->
       </li>
 
       <li class="device-type__info">
         <p><span class="device-type__info--count">{{ laptops[location].windowsAvailable }}</span></p>
-        <p class="device-type__info--availability"><i class="fa fa-windows device-type__info--icon" aria-hidden="true"></i> <span class="available">available</span></p>
+        <p class="device-type__info--availability"><i class="fa fa-windows device-type__info--icon" aria-hidden="true"></i> <is-available device="windowsAvailable"/></p>
         <!--{{ laptops[location].windowsNextDue }}-->
       </li>
     </ul>
@@ -28,23 +28,23 @@
     <ul>
       <li class="device-type__info">
         <p><span class="device-type__info--count">{{ phoneChargers[location].iphone4Available }}</span></p>
-        <p class="device-type__info--availability">iPhone 4 <span class="available">available</span></p>
+        <p class="device-type__info--availability">iPhone 4 <is-available device="iphone4Available"/></p>
       </li>
 
       <li class="device-type__info">
         <p><span class="device-type__info--count">{{ phoneChargers[location].iphoneAvailable}}</span></p>
-        <p class="device-type__info--availability">iPhone 5 &amp; up <span class="available">available</span></p>
+        <p class="device-type__info--availability">iPhone 5 &amp; up <is-available device="iphoneAvailable"/></p>
       </li>
 
       <li class="device-type__info">
         <p><span class="device-type__info--count">{{ phoneChargers[location].microUsbAvailable }}</span></p>
-        <p class="device-type__info--availability">Micro USB <span class="available">available</span></p>
+        <p class="device-type__info--availability">Micro USB <is-available device="microUsbAvailable"/></p>
       </li>
       </li>
 
       <li class="device-type__info">
         <p><span class="device-type__info--count">{{ phoneChargers[location].usbCAvailable }}</span></p>
-        <p class="device-type__info--availability">USB-C <span class="available">available</span></p>
+        <p class="device-type__info--availability">USB-C <is-available device="usbCAvailable"/></p>
       </li>
 
     </ul>
@@ -53,7 +53,12 @@
 </template>
 
 <script>
+import COUNT from '~components/is-available'
+
 export default {
+  components: {
+    'is-available': COUNT
+  },
   computed: {
     laptops () {
       return this.$store.state.laptops.locations
