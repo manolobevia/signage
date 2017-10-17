@@ -9,13 +9,13 @@
     <ul>
       <li class="device-type__info">
         <p><span class="device-type__info--count">{{ laptops[location].macAvailable }}</span></p>
-        <p class="device-type__info--availability"><i class="fa fa-apple device-type__info--icon" aria-hidden="true"></i> <is-available device="macAvailable"/></p>
+        <p class="device-type__info--availability"><i class="fa fa-apple device-type__info--icon" aria-hidden="true"></i> <is-available :count="laptops[location].macAvailable"/></p>
         <!--{{ laptops[location].macNextDue }}-->
       </li>
 
       <li class="device-type__info">
         <p><span class="device-type__info--count">{{ laptops[location].windowsAvailable }}</span></p>
-        <p class="device-type__info--availability"><i class="fa fa-windows device-type__info--icon" aria-hidden="true"></i> <is-available device="windowsAvailable"/></p>
+        <p class="device-type__info--availability"><i class="fa fa-windows device-type__info--icon" aria-hidden="true"></i> <is-available :count="laptops[location].windowsAvailable"/></p>
         <!--{{ laptops[location].windowsNextDue }}-->
       </li>
     </ul>
@@ -28,23 +28,23 @@
     <ul>
       <li class="device-type__info">
         <p><span class="device-type__info--count">{{ phoneChargers[location].iphone4Available }}</span></p>
-        <p class="device-type__info--availability">iPhone 4 <is-available device="iphone4Available"/></p>
+        <p class="device-type__info--availability">iPhone 4 <is-available :count="phoneChargers[location].iphone4Available"/></p>
       </li>
 
       <li class="device-type__info">
         <p><span class="device-type__info--count">{{ phoneChargers[location].iphoneAvailable}}</span></p>
-        <p class="device-type__info--availability">iPhone 5 &amp; up <is-available device="iphoneAvailable"/></p>
+        <p class="device-type__info--availability">iPhone 5 &amp; up <is-available :count="phoneChargers[location].iphoneAvailable"/></p>
       </li>
 
       <li class="device-type__info">
         <p><span class="device-type__info--count">{{ phoneChargers[location].microUsbAvailable }}</span></p>
-        <p class="device-type__info--availability">Micro USB <is-available device="microUsbAvailable"/></p>
+        <p class="device-type__info--availability">Micro USB <is-available :count="phoneChargers[location].microUsbAvailable"/></p>
       </li>
       </li>
 
       <li class="device-type__info">
         <p><span class="device-type__info--count">{{ phoneChargers[location].usbCAvailable }}</span></p>
-        <p class="device-type__info--availability">USB-C <is-available device="usbCAvailable"/></p>
+        <p class="device-type__info--availability">USB-C <is-available :count="phoneChargers[location].usbCAvailable"/></p>
       </li>
 
     </ul>

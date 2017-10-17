@@ -1,17 +1,12 @@
 <template>
-    <span class="available" v-bind:class="{ unavailable: checkAvailability }"> available</span>
+    <span class="available" :class="{ unavailable: !count }"> available</span>
 </template>
 
 <script>
 
 export default {
-  computed: {
-    checkAvailability () {
-      return this.$store.state.laptops.locations[this.$route.params.location].device
-    }
-  },
   props: [
-    'device'
+    'count'
   ]
 }
 </script>
